@@ -135,6 +135,7 @@ radio_button = st.sidebar.radio("Select Mode", ["Forecasting Model", "Anomaly De
 #### if block
 if radio_button == "Forecasting Model":
     st.title("Forecasting Model")
+    st.header('', divider='rainbow')
     col1,col2 =st.columns(2)
 
     with col1:
@@ -156,6 +157,7 @@ if radio_button == "Forecasting Model":
 ####   else block
 else:
     st.title("Anomaly Detection")
+    st.header('', divider='rainbow')
     col3,col4 = st.columns(2)
 
     with col3:
@@ -165,3 +167,14 @@ else:
         impressions_button = st.number_input("Enter an integer:", step=1)
     
     Ana_out = Anamoly(date_input_button,impressions_button)
+
+    st.dataframe(Ana_out)
+
+    x = Ana_out["is_anomaly"]
+    
+    if x[0]:
+        st.subheader("This is :red[Anamoly (Outlier)]")
+    else:
+        st.subheader("This is not an :green[anamoly (Outlier)]")
+
+
