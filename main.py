@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine,text
 import plotly.express as px
+import datetime
 
 snowflake_url = st.secrets["forecasting_snowflake"]["url"]
 
@@ -97,6 +98,29 @@ def forecast(input_parameter):
         conn.close()
     return forecast_data
 
+#============================================
+# Anamoly detection model
+@st.cache_data
+def Anamoly(date_input_button,impressions_button):
+    #formatted_date = date_input_button.replace('/', '-'))
+    query = f"""CALL impression_anomaly_detector!DETECT_ANOMALIES(
+  INPUT_DATA => SYSTEM$QUERY_REFERENCE('select ''{date_input_button}''::timestamp as day, {impressions_button} as impressions'),
+  TIMESTAMP_COLNAME =>'day', TARGET_COLNAME => 'impressions');"""
+    try:
+        with engine.connect() as conn:
+
+            result = conn.execute(query)
+            
+            anamoly_data = pd.DataFrame(result.fetchall(), columns=result.keys())
+
+    except Exception as e:
+        st.error(f'Error: {e}')
+    finally:
+        # Close the connection
+        conn.close()
+    return anamoly_data
+
+
 
 
 
@@ -108,7 +132,7 @@ engine = create_engine(snowflake_url)
 
 radio_button = st.sidebar.radio("Select Mode", ["Forecasting Model", "Anomaly Detection"])
 
-
+#### if block
 if radio_button == "Forecasting Model":
     st.title("Forecasting Model")
     col1,col2 =st.columns(2)
@@ -129,6 +153,15 @@ if radio_button == "Forecasting Model":
     # Chartmaker used to draw charts based on the user's need
     chart_maker(df)
     
-
+####   else block
 else:
     st.title("Anomaly Detection")
+    col3,col4 = st.columns(2)
+
+    with col3:
+        date_input_button = st.date_input("Date",datetime.date(2022, 12, 6),format="YYYY-MM-DD")
+
+    with col4:
+        impressions_button = st.number_input("Enter an integer:", step=1)
+    
+    Ana_out = Anamoly(date_input_button,impressions_button)
