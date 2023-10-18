@@ -62,7 +62,7 @@ def line_chart_maker(df):
 #=========================================================================
 #Chart maker
 def chart_maker(df):
-    chart_selection = st.selectbox("Select Chart Type",chart_types)
+    chart_selection = st.selectbox("Please choose a chart type for visualization",chart_types)
 
     # chart display based on the selection
     if chart_selection == "Bar Chart" and len(df) > 0:
@@ -130,7 +130,7 @@ def Anamoly(date_input_button,impressions_button):
 engine = create_engine(snowflake_url)
 
 
-radio_button = st.sidebar.radio("Choose an operation", ["Forecasting Model", "Anomaly Detection"])
+radio_button = st.sidebar.radio("Choose an Operation", ["Forecasting Model", "Anomaly Detection"])
 
 #### if block
 if radio_button == "Forecasting Model":
