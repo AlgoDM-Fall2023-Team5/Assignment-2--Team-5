@@ -161,7 +161,7 @@ else:
     col3,col4 = st.columns(2)
 
     with col3:
-        date_input_button = st.date_input("Date",datetime.date(2022, 12, 6),format="YYYY-MM-DD")
+        date_input_button = st.date_input("Select Date",datetime.date(2022, 12, 6),format="YYYY-MM-DD")
 
     with col4:
         impressions_button = st.number_input("Enter an integer:", step=1)
@@ -175,6 +175,6 @@ else:
     if x[0]:
         st.subheader("This is :red[Anamoly (Outlier)]")
     else:
-        st.subheader("This is not an :green[anamoly (Outlier)]")
+        st.subheader("This is not an :green[Anamoly (Outlier)]")
 
 
