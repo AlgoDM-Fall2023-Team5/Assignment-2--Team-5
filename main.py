@@ -130,7 +130,7 @@ def Anamoly(date_input_button,impressions_button):
 engine = create_engine(snowflake_url)
 
 
-radio_button = st.sidebar.radio("Select Mode", ["Forecasting Model", "Anomaly Detection"])
+radio_button = st.sidebar.radio("Choose an operation", ["Forecasting Model", "Anomaly Detection"])
 
 #### if block
 if radio_button == "Forecasting Model":
