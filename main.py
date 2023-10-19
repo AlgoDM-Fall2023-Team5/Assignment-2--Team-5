@@ -3,10 +3,40 @@ import pandas as pd
 from sqlalchemy import create_engine,text
 import plotly.express as px
 import datetime
+import matplotlib.pyplot as plt
 
 snowflake_url = st.secrets["forecasting_snowflake"]["url"]
 
-chart_types = ["Bar Chart","Pie Chart","Scatter Plot","Line Chart"]
+chart_types = ["Bar Chart","Pie Chart","Scatter Plot","Line Chart","Actual & Predicted"]
+
+
+#actual & Predicted combined plot
+@st.cache_data
+def Act_Pred(input_parameter,df):
+    try:
+        with engine.connect() as conn:
+            sql_query = f"CALL impressions_forecast!FORECAST(FORECASTING_PERIODS => {input_parameter})"
+            sql_query_2 = f"""SELECT day AS ts, impression_count AS actual, NULL AS forecast, NULL AS lower_bound, NULL AS upper_bound
+                                FROM daily_impressions UNION ALL
+                                SELECT ts, NULL AS actual, forecast, lower_bound, upper_bound
+                                FROM TABLE(RESULT_SCAN(-1));"""
+            result = conn.execute(sql_query)
+            result2 = conn.execute(sql_query_2)
+
+            forecast_plot_data = pd.DataFrame(result2.fetchall(), columns=result2.keys())
+            
+            fig = px.line(forecast_plot_data, x="ts", y=["actual", "forecast"], labels={"value": "Impression Count"}, title="Actual vs. Forecast Impressions",
+                          color_discrete_map={"actual": "green", "forecast": "red"})
+            fig.update_traces(line=dict(width=3))
+            st.plotly_chart(fig)
+    except Exception as e:
+            st.error(f'Error: {e}')
+    finally:
+        # Close the connection
+        conn.close()
+    return forecast_plot_data
+
+
 # bar chart 
 def bar_chart_maker(df):
     col1,col2 = st.columns([1,1])
@@ -73,6 +103,8 @@ def chart_maker(df):
         scatter_plot_maker(df)
     elif chart_selection == "Line Chart" and len(df)>0:
         line_chart_maker(df)
+    elif chart_selection == "Actual & Predicted" and len(df)>0:
+        Act_Pred(input_parameter,df)
     else:
         st.write("Empty Table Returned")
 
@@ -136,7 +168,7 @@ radio_button = st.sidebar.radio("Select Mode", ["Forecasting Model", "Anomaly De
 if radio_button == "Forecasting Model":
     st.title("Forecasting Model")
     st.header('', divider='rainbow')
-    col1,col2 =st.columns(2)
+    col1,col2,col3 =st.columns([1,1,1])
 
     with col1:
         input_parameter = st.slider('Input Parameter', min_value=0, max_value=100, value=50)
@@ -147,13 +179,18 @@ if radio_button == "Forecasting Model":
         st.write("")
         st.write("")
         check_button = st.checkbox("Show DataFrame") # check button
+    
+    with col3:
+        st.write("")
+        st.write("")
+        chart_button = st.checkbox("Plot Charts")
 
     # Check box to show the dataframe
     if check_button:
         st.dataframe(df)
     # Chartmaker used to draw charts based on the user's need
-    chart_maker(df)
-    
+    if chart_button:
+        chart_maker(df)
 ####   else block
 else:
     st.title("Anomaly Detection")
