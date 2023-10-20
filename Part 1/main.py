@@ -92,7 +92,7 @@ def line_chart_maker(df):
 #=========================================================================
 #Chart maker
 def chart_maker(df):
-    chart_selection = st.selectbox("Please choose a chart type for visualization",chart_types)
+    chart_selection = st.selectbox("Select Chart Type",chart_types)
 
     # chart display based on the selection
     if chart_selection == "Bar Chart" and len(df) > 0:
@@ -162,7 +162,7 @@ def Anamoly(date_input_button,impressions_button):
 engine = create_engine(snowflake_url)
 
 
-radio_button = st.sidebar.radio("Choose an Operation", ["Forecasting Model", "Anomaly Detection"])
+radio_button = st.sidebar.radio("Select Mode", ["Forecasting Model", "Anomaly Detection"])
 
 #### if block
 if radio_button == "Forecasting Model":
@@ -198,7 +198,7 @@ else:
     col3,col4 = st.columns(2)
 
     with col3:
-        date_input_button = st.date_input("Select Date",datetime.date(2022, 12, 6),format="YYYY-MM-DD")
+        date_input_button = st.date_input("Date",datetime.date(2022, 12, 6),format="YYYY-MM-DD")
 
     with col4:
         impressions_button = st.number_input("Enter an integer:", step=1)
@@ -212,6 +212,6 @@ else:
     if x[0]:
         st.subheader("This is :red[Anamoly (Outlier)]")
     else:
-        st.subheader("This is not an :green[Anamoly (Outlier)]")
+        st.subheader("This is not an :green[anamoly (Outlier)]")
 
 
