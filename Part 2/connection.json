@@ -1,0 +1,9 @@
+{
+  "account"   : "QXOMKSN-KIB31585",
+  "user"      : "SAISRINIVAS1",
+  "password"  : "Algodm123",
+  "role"      : "ACCOUNTADMIN",
+  "warehouse" : "DASH_L",
+  "database"  : "DASH_DB",
+  "schema"    : "DASH_SCHEMA"
+}
