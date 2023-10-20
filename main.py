@@ -36,7 +36,7 @@ def Act_Pred(input_parameter,df):
         conn.close()
     return forecast_plot_data
 
-
+#======================================================================
 # bar chart 
 def bar_chart_maker(df):
     col1,col2 = st.columns([1,1])
