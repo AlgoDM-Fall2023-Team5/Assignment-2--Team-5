@@ -1,9 +1,0 @@
-{
-    "account": "QXOMKSN-KIB31585",
-    "user": "SAISRINIVAS1",
-    "password": "Algodm123",
-    "warehouse": "snowpark_opt_wh",
-    "database": "TPCDS_XGBOOST",
-    "schema": "DEMO"
-  }
-  
