@@ -114,7 +114,6 @@ def load_model(model_path: str) -> object:
     model = load(model_path)
     return model
 
-@st.cache_data
 def udf_score_xgboost_model_vec_cached(df: pd.DataFrame) -> pd.Series:
     import os
     import sys
