@@ -3,6 +3,10 @@ import snowflake.connector
 import joblib
 import gzip
 
+
+# Snowflake ML model path
+model_path = '@"TPCDS_XGBOOST"."DEMO"."ML_MODELS"/model.joblib.gz'
+
 # Snowflake connection settings
 snowflake_settings = {
     'user': 'SAISRINIVAS1',
@@ -19,7 +23,7 @@ def get_test_data():
     cursor = conn.cursor()
 
     # Replace with SQL query to fetch test data from Snowflake
-    query = "SELECT * FROM TPCDS_XGBOOST.DEMO.TPC_TEST"
+    query = "SELECT * FROM TPCDS_XGBOOST.DEMO.TEMP_TEST limit 200"
     cursor.execute(query)
     test_data = cursor.fetchall()
 
@@ -33,7 +37,8 @@ def load_model_from_snowflake():
     cursor = conn.cursor()
 
     # Replace with SQL query to fetch the model from Snowflake
-    query = "SELECT model_binary FROM @ML_MODELS"
+    query = f"SELECT MODEL.PREDICT(USING '{model_path}', temp_input.*) FROM temp_input"
+
     cursor.execute(query)
     model_binary = cursor.fetchone()[0]
 
@@ -55,14 +60,14 @@ if test_data:
     st.write('Test data retrieved successfully.')
 
     st.write('Loading the model from Snowflake...')
-    model = load_model_from_snowflake()
+    predictions = run_model_from_snowflake(test_data)
 
     st.write('Model loaded successfully.')
 
     st.write('Making predictions on the test data...')
 
     # You'll need to adapt this part to preprocess and make predictions on your test data
-    predictions = model.predict(test_data)
+    #predictions = model.predict(test_data)
 
     st.write('Predictions:', predictions)
 
