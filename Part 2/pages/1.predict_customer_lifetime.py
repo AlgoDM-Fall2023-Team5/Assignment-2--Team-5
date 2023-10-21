@@ -19,7 +19,7 @@ def get_test_data():
     cursor = conn.cursor()
 
     # Replace with SQL query to fetch test data from Snowflake
-    query = "SELECT * FROM TPCDS_XGBOOST.DEMO.TPC_TEST"
+    query = "SELECT * FROM TPCDS_XGBOOST.DEMO.TPC_TRAIN limit 200"
     cursor.execute(query)
     test_data = cursor.fetchall()
 
@@ -33,9 +33,11 @@ def load_model_from_snowflake():
     cursor = conn.cursor()
 
     # Replace with SQL query to fetch the model from Snowflake
-    query = "SELECT model_binary FROM @ML_MODELS"
-    cursor.execute(query)
-    model_binary = cursor.fetchone()[0]
+    # query = "SELECT TPCDS_PREDICT_CLV FROM @ML_MODELS"
+    # cursor.execute(query)
+    # model_binary = cursor.fetchone()[0]
+
+    model_binary = "model.joblib.gz"
 
     with gzip.open(model_binary, 'rb') as model_file:
         model = joblib.load(model_file)
