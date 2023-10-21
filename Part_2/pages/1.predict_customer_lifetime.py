@@ -144,7 +144,7 @@ udf_clv = session.udf.register(func=udf_score_xgboost_model_vec_cached,
 
 test_sdf_w_preds = test_sdf.with_column('PREDICTED', udf_clv(*feature_cols))
 
-st.title('Snowflake Model Deployment for Testing')
+st.title('Predict Customer Lifetime Value')
 
 length_button = st.number_input("Enter an integer:", step=1)
 
