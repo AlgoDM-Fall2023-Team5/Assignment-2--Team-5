@@ -9,6 +9,7 @@ from snowflake.snowpark.session import Session
 import joblib
 from cachetools import cached
 import plotly.express as px
+import secrets
 
 
 
@@ -85,12 +86,11 @@ def chart_maker(df):
 
 #======================================================================
 # Ensure that your credentials are stored in creds.json
-with open('creds.json') as f:
-    data = json.load(f)
-    USERNAME = data['user']
-    PASSWORD = data['password']
-    SF_ACCOUNT = data['account']
-    SF_WH = data['warehouse']
+secrets.toml.load_secrets()
+USERNAME = secrets.toml.my_app_credentials.user
+PASSWORD = secrets.toml.my_app_credentials.password
+SF_ACCOUNT = secrets.toml.my_app_credentials.account
+SF_WH = secrets.toml.my_app_credentials.warehouse
 
 CONNECTION_PARAMETERS = {
    "account": SF_ACCOUNT,
