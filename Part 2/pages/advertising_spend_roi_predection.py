@@ -17,6 +17,7 @@ def load():
   alloc, rois, last_alloc = data.drop("ROI"), data.drop(["CHANNEL", "BUDGET"]).distinct(), data.filter(col("MONTH") == "June")
   return data.to_pandas(), alloc.to_pandas(), rois.to_pandas(), last_alloc.to_pandas()
 
+@st.cache_data(show_spinner=False)
 def predict(budgets):
   pred = session.sql(f"SELECT predict_roi(array_construct({budgets[0]*1000},{budgets[1]*1000},{budgets[2]*1000},{budgets[3]*1000})) as PREDICTED_ROI").to_pandas()
   pred = pred["PREDICTED_ROI"].values[0] / 100000
