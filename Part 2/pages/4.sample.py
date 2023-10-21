@@ -8,7 +8,82 @@ from snowflake.snowpark import version as v
 from snowflake.snowpark.session import Session
 import joblib
 from cachetools import cached
+import plotly.express as px
 
+
+
+chart_types = ["Bar Chart","Pie Chart","Scatter Plot","Line Chart"]
+#======================================================================
+# bar chart 
+def bar_chart_maker(df):
+    col1,col2 = st.columns([1,1])
+    try:
+        with col1:
+            x_axis = st.selectbox("Select X_axis: ",df.columns)
+        with col2:
+            y_axis = st.selectbox("Select Y axis :",df.columns)
+        
+        fig = px.bar(df, x=x_axis, y=y_axis, title=f'Bar Chart: {x_axis} vs {y_axis}')
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.error("Please Check your Bar chart",e)
+
+#=======================================================================
+#pie chart maker
+def pie_chart_maker(df):
+    try:
+        column = st.selectbox("Select a Column :",df.columns)
+        
+        fig = px.pie(df, names=column, values=column, title=f'Pie Chart: {column}')
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.error("please check you pie chart",e)
+#========================================================================
+# scatter plot maker
+def scatter_plot_maker(df):
+    col1,col2 = st.columns([1,1])
+    try:
+        with col1:
+            x_axis = st.selectbox("Select X_axis: ",df.columns)
+        with col2:
+            y_axis = st.selectbox("Select Y axis :",df.columns)
+        
+        fig = px.scatter(df, x=x_axis, y=y_axis, title=f'Scatter Plot: {x_axis} vs {y_axis}')
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.error("Please Check your Scatter Plot",e)
+#=========================================================================
+# line chart
+def line_chart_maker(df):
+    col1,col2 = st.columns([1,1])
+    try:
+        with col1:
+            x_axis = st.selectbox("Select X_axis: ",df.columns)
+        with col2:
+            y_axis = st.selectbox("Select Y axis :",df.columns)
+        
+        fig = px.line(df, x=x_axis, y=y_axis, title=f'Line Chart: {x_axis} vs {y_axis}')
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.error("Please Check your Line chart",e)
+#=========================================================================
+#Chart maker
+def chart_maker(df):
+    chart_selection = st.selectbox("Select Chart Type",chart_types)
+
+    # chart display based on the selection
+    if chart_selection == "Bar Chart" and len(df) > 0:
+        bar_chart_maker(df)
+    elif chart_selection == "Pie Chart" and len(df) > 0:
+        pie_chart_maker(df)
+    elif chart_selection == "Scatter Plot" and len(df) > 0:
+        scatter_plot_maker(df)
+    elif chart_selection == "Line Chart" and len(df)>0:
+        line_chart_maker(df)
+    else:
+        st.write("Empty Table Returned")
+
+#======================================================================
 # Ensure that your credentials are stored in creds.json
 with open('creds.json') as f:
     data = json.load(f)
@@ -22,7 +97,7 @@ CONNECTION_PARAMETERS = {
    "user": USERNAME,
    "password": PASSWORD,
 }
-
+#=============================================================================
 session = Session.builder.configs(CONNECTION_PARAMETERS).create()
 session.use_warehouse('snowpark_opt_wh')
 session.use_database('tpcds_xgboost')
@@ -39,6 +114,7 @@ def load_model(model_path: str) -> object:
     model = load(model_path)
     return model
 
+@st.cache_data
 def udf_score_xgboost_model_vec_cached(df: pd.DataFrame) -> pd.Series:
     import os
     import sys
@@ -68,4 +144,14 @@ udf_clv = session.udf.register(func=udf_score_xgboost_model_vec_cached,
 
 
 test_sdf_w_preds = test_sdf.with_column('PREDICTED', udf_clv(*feature_cols))
-st.write(test_sdf_w_preds.limit(2).to_pandas())
+
+st.title('Snowflake Model Deployment for Testing')
+
+length_button = st.number_input("Enter an integer:", step=1)
+
+check_button = st.checkbox("Show DataFrame")
+df = test_sdf_w_preds.limit(length_button).to_pandas()
+if check_button:
+    st.write(df)
+
+chart_maker(df)
