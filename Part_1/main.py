@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine,text
 import plotly.express as px
 import datetime
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sqlalchemy.dialects import registry
 
 snowflake_url = st.secrets["forecasting_snowflake"]["url"]
