@@ -1,0 +1,11 @@
+altair==5.1.2
+cachetools==4.2.2
+joblib==1.2.0
+plotly==5.17.0
+snowflake_connector_python==3.2.0
+snowflake_snowpark_python==1.8.0
+snowflake_sqlalchemy==1.5.0
+streamlit==1.26.0
+matplotlib==3.7.3
+pandas==2.0.3
+SQLAlchemy==1.4.49
