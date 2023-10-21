@@ -37,17 +37,17 @@ st.header("SkiGear Co Ad Spend Optimizer")
 st.subheader("Advertising budgets")
 
 # Read Snowflake credentials from connection.json
-with open('connection.json', 'r') as json_file:
-    connection_config = json.load(json_file)
+# with open('connection.json', 'r') as json_file:
+#     connection_config = json.load(json_file)
 
 # Initialize Snowflake session with parameters
 parameters = {
-    "account": connection_config["account"],
-    "user": connection_config["user"],
-    "password": connection_config["password"],
-    "warehouse": connection_config["warehouse"],
-    "database": connection_config["database"],
-    "schema": connection_config["schema"],
+    "account": st.secrets["2_credentials"]["account"],
+    "user": st.secrets["2_credentials"]["user"],
+    "password": st.secrets["2_credentials"]["password"],
+    "warehouse": st.secrets["2_credentials"]["warehouse"],
+    "database": st.secrets["2_credentials"]["database"],
+    "schema": st.secrets["2_credentials"]["schema"],
 }
 
 session = Session.builder.configs(parameters).create()

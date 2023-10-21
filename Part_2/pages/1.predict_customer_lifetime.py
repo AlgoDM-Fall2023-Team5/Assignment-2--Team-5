@@ -87,13 +87,15 @@ def chart_maker(df):
 #======================================================================
 # Ensure that your credentials are stored in creds.json
 # Load credentials from the secrets.toml file
-st.secrets.toml.load_secrets()
+snowflake_access = st.secrets["1_credentials"]
 
 # Access your credentials
-USERNAME = st.secrets['my_app_credentials']['user']
-PASSWORD = st.secrets['my_app_credentials']['password']
-SF_ACCOUNT = st.secrets['my_app_credentials']['account']
-SF_WH = st.secrets['my_app_credentials']['warehouse']
+USERNAME = st.secrets["3_credentials"]['user']
+PASSWORD = st.secrets["3_credentials"]['password']
+SF_ACCOUNT = st.secrets["3_credentials"]['account']
+#SF_WH =st.secrets["1_credentials"]['warehouse']
+
+
 
 CONNECTION_PARAMETERS = {
    "account": SF_ACCOUNT,
