@@ -86,11 +86,14 @@ def chart_maker(df):
 
 #======================================================================
 # Ensure that your credentials are stored in creds.json
-secrets.toml.load_secrets()
-USERNAME = secrets.toml.my_app_credentials.user
-PASSWORD = secrets.toml.my_app_credentials.password
-SF_ACCOUNT = secrets.toml.my_app_credentials.account
-SF_WH = secrets.toml.my_app_credentials.warehouse
+# Load credentials from the secrets.toml file
+st.secrets.toml.load_secrets()
+
+# Access your credentials
+USERNAME = st.secrets['my_app_credentials']['user']
+PASSWORD = st.secrets['my_app_credentials']['password']
+SF_ACCOUNT = st.secrets['my_app_credentials']['account']
+SF_WH = st.secrets['my_app_credentials']['warehouse']
 
 CONNECTION_PARAMETERS = {
    "account": SF_ACCOUNT,
