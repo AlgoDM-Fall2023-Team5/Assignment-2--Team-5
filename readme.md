@@ -1,10 +1,6 @@
-<p align="center">
-  <img src="your_logo.png" alt="Your Logo">
-</p>
-
 # Assignment README 🚀
 
-Welcome to our data science project! This repository contains the completed assignments for a data-driven adventure where we harnessed the power of Snowflake and created a dynamic Streamlit app to explore the world of data.
+This repository contains the completed assignments for a data-driven adventure where we harnessed the power of Snowflake and created a dynamic Streamlit app to explore the world of data.
 
 ## Part 1: Predict Ad Impressions with Snowflake 📈
 
@@ -20,7 +16,37 @@ In the first leg of our journey, we embarked on a thrilling tutorial provided by
 
 To make our journey even more exciting, we built a Streamlit app that lets you interact with the ad impressions prediction model. It's a two-part adventure!
 
-- The [Streamlit app](/streamlit_app/) directory contains the code for our interactive app.
+#### 1. Link to Access the public streamlit app
+[Predict AD Impressions Streamlit App]()
+#### 2. How to Use the Streamlit App locally:
+1. Clone the repository to your local machine:
+
+
+  ```bash
+   git clone https://github.com/your-username/your-repo.git
+   ```
+   2. Change Directory 
+
+   ```
+   cd part_1
+   ```
+3. Create environment
+```
+conda create --name snowpark-de-ml1 python==3.9.0
+conda activate snowpark-de-ml1
+   ```
+
+4. Install Requirements
+```
+pip install -r requirements.txt
+
+   ```
+   5. Run the app
+
+   ```
+   streamlit run your_streamlit_app.py
+
+   ```
 
 - 📊 Users can input data and watch as predictions for ad impressions unfold using the deployed model.
 
@@ -48,19 +74,40 @@ For the second part of our journey, we decided to explore three Snowflake applic
 
 - To tie all our adventures together, we created a multipage Streamlit app that combines all three functions: Customer Lifetime Value computation, Predict Customer Spend, and ROI prediction.
 
-- The [Streamlit multipage app](/multipage_streamlit_app/) directory contains the code for our grand finale!
 
-## How to Use 📋
+#### 1. Link to Access the public streamlit app
+[Multipage Streamlit App]()
+#### 2. How to Use the Streamlit App locally:
+1. Clone the repository to your local machine:
 
-We want you to join our adventure! Detailed instructions on how to run and use the applications are provided in the respective subdirectories for each part of the assignment.
 
-## Deployment and Links 🌐
+  ```bash
+   git clone https://github.com/your-username/your-repo.git
+   ```
+   2. Change Directory 
 
-1. The [Predict Ad Impressions Tutorial](https://quickstarts.snowflake.com/guide/predict_ad_impressions_with_ml_powered_analysis/index.html#0) deployed model link: [Insert Link Here]
+   ```
+   cd part_2
+   ```
+3. Create environment
+```
+conda create --name snowpark-de-ml2 python==3.9.0
+conda activate snowpark-de-ml1
+   ```
 
-2. The multipage Streamlit app incorporating all three functions is deployed at [Insert Link Here].
+4. Install Requirements
+```
+pip install -r requirements.txt
 
-Feel free to join our journey, ask questions, and explore the data science world with us! 🌍🧭
+   ```
+   5. Run the app
 
-[Your Name] 🧑‍💻
-[Date] 📅
+   ```
+   streamlit run your_streamlit_app.py
+
+   ```
+
+
+
+[AlgoDM-Team 5] 🧑‍💻
+
