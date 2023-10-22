@@ -7,6 +7,7 @@ This repository contains the completed assignments for a data-driven adventure w
 2. [Part-1: Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-1main-w9gt3r.streamlit.app/)🔗
 3. [Part-2: Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-2home-hvbgog.streamlit.app/)🔗
 4. [Contribution Report:](https://github.com/AlgoDM-Fall2023-Team5/Assignment-2--Team-5/blob/Main/Project%20Contribution%20Report.pdf)🔗
+5. [Video Recording:](https://drive.google.com/file/d/1yDlru1gUswo7h5NNog-J-rEL5w7SqaDo/view?usp=sharing)🔗
 
 
 ## Part 1: Predict Ad Impressions with Snowflake 📈
