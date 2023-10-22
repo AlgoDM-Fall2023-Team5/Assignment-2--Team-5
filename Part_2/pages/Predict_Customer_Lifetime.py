@@ -151,7 +151,7 @@ test_sdf_w_preds = test_sdf.with_column('PREDICTED', udf_clv(*feature_cols))
 
 st.title('Predict Customer Lifetime Value')
 
-length_button = st.number_input("Enter an integer:", step=1)
+length_button = st.number_input("Select Number of cases:", step=1)
 
 check_button = st.checkbox("Show DataFrame")
 df = test_sdf_w_preds.limit(length_button).to_pandas()
