@@ -2,7 +2,7 @@
 
 This repository contains the completed assignments for a data-driven adventure where we harnessed the power of Snowflake and created a dynamic Streamlit app to explore the world of data.
 
-## Quick Links:
+## Quick Links:🔎
 1. [Codelabs](https://codelabs-preview.appspot.com/?file_id=1ea3kTSSYjT_-X9iKF2V4aCMk4L_BEHLe5yHWjPbdFhM#0)🔗
 2. [Part-1: Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-1main-w9gt3r.streamlit.app/)🔗
 3. [Part-2: Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-2home-hvbgog.streamlit.app/)🔗
