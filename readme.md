@@ -2,9 +2,15 @@
 
 This repository contains the completed assignments for a data-driven adventure where we harnessed the power of Snowflake and created a dynamic Streamlit app to explore the world of data.
 
+## Quick Links:
+1. [Codelabs](https://codelabs-preview.appspot.com/?file_id=1ea3kTSSYjT_-X9iKF2V4aCMk4L_BEHLe5yHWjPbdFhM#0)🔗
+2. [Part-1: Streamlit App](https://github.com/AlgoDM-Fall2023-Team5/Assignment-2--Team-5/blob/Main)🔗
+3. [Part-2: Streamlit App](https://github.com/AlgoDM-Fall2023-Team5/Assignment-2--Team-5/blob/Main)🔗
+
+
 ## Part 1: Predict Ad Impressions with Snowflake 📈
 [Github Repo](https://github.com/AlgoDM-Fall2023-Team5/Assignment-2--Team-5/tree/Main/Part_1)🔗
-### Tutorial Completion ✅
+#### Tutorial Completion ✅
 
 In the first leg of our journey, we embarked on a thrilling tutorial provided by Snowflake to predict ad impressions using ML-powered analysis. Here's what we accomplished:
 
@@ -16,8 +22,8 @@ In the first leg of our journey, we embarked on a thrilling tutorial provided by
 
 To make our journey even more exciting, we built a Streamlit app that lets you interact with the ad impressions prediction model. It's a two-part adventure!
 
-#### 1. Link to Access the public streamlit app
-[Predict AD Impressions Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-1main-w9gt3r.streamlit.app/)
+#### 1. Link to Public streamlit app
+[Predict AD Impressions Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-1main-w9gt3r.streamlit.app/)🔗
 #### 2. How to Use the Streamlit App locally:
 1. Clone the repository to your local machine:
 
@@ -51,6 +57,7 @@ pip install -r requirements.txt
 - 📊 Users can input data and watch as predictions for ad impressions unfold using the deployed model.
 
 ## Part 2: Test and Integrate Three Snowflake Applications 🧩
+[Github Repo](https://github.com/AlgoDM-Fall2023-Team5/Assignment-2--Team-5/tree/Main/Part_2)🔗
 
 For the second part of our journey, we decided to explore three Snowflake applications. Each brought a new challenge and opportunity for us to learn. Let's dive in!
 
@@ -76,7 +83,7 @@ For the second part of our journey, we decided to explore three Snowflake applic
 
 
 #### 1. Link to Access the public streamlit app
-[Multipage Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-2home-hvbgog.streamlit.app/)
+[Multipage Streamlit App](https://algodm-fall2023-team5-assignment-2--team-5-part-2home-hvbgog.streamlit.app/)🔗
 #### 2. How to Use the Streamlit App locally:
 1. Clone the repository to your local machine:
 
